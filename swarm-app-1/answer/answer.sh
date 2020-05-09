@@ -11,4 +11,11 @@ docker service create --name worker --network frontend --network backend bretfis
 
 docker service create --name result --network backend -p 5001:80 bretfisher/examplevotingapp_result
 
+// STACK
+docker stack deploy -c <YAML_FILE> <APP_NAME>
 
+docker stack ps <APP_NAME>
+... rm
+...deploy
+...rm
+...service
