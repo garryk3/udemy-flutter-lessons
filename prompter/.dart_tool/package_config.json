@@ -1,0 +1,13 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "prompter_igv",
+      "rootUri": "../",
+      "packageUri": "lib/"
+    }
+  ],
+  "generated": "2020-05-29T08:45:25.800450Z",
+  "generator": "pub",
+  "generatorVersion": "2.8.2"
+}
