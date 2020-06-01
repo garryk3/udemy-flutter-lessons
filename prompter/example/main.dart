@@ -1,6 +1,4 @@
-import 'package:prompter_igv/src/terminal.dart';
-import 'package:prompter_igv/src/option.dart';
-import 'package:prompter_igv/src/prompter.dart';
+import 'package:prompter_igv/prompter_igv.dart';
 
 void main() {
   final Prompter prompter = Prompter();
@@ -9,5 +7,9 @@ void main() {
       Option('Blue', '#00f')
   ];
   
-  prompter.ask('prompt', options);
+  final String colorCode = prompter.askMultiple('Select color', options);
+  final bool answer = prompter.askBinary('Do you like this lib?');
+
+  print(colorCode);
+  print(answer);
 }
