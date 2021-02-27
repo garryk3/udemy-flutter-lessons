@@ -1,6 +1,3 @@
-[submodule "rxjs-course"]
-	path = rxjs-course
-	url = https://github.com/angular-university/rxjs-course.git
 [submodule "rxjs/rxjs-course"]
 	path = rxjs/rxjs-course
 	url = https://github.com/angular-university/rxjs-course.git
