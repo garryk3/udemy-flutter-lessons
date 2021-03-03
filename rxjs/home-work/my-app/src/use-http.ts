@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Observable, of, timer } from 'rxjs';
 import { tap, delay, shareReplay, catchError, map, retryWhen, delayWhen } from 'rxjs/operators';
 
-interface IResult<T> {
+export interface IResult<T> {
   error: Error | null;
   result: T | null;
 }
 
-function _createHttpObservable<T>(url = 'https://jsonplaceholder.typicode.com/todos') {
+export function createHttpObservable<T>(url = 'https://jsonplaceholder.typicode.com/todos') {
   const controller = new AbortController();
   const signal = controller.signal;
 
@@ -45,7 +45,7 @@ export default function useHttp<T>(url: string) {
     const [val, setVal] = useState<IResult<T>>({result: null, error: null});
     
     useEffect(() => {
-        const http$ = _createHttpObservable<T>(url)
+        const http$ = createHttpObservable<T>(url)
           .pipe(
             tap(() => console.log('http request execute!')),
             retryWhen(error => error.pipe(

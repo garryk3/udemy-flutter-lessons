@@ -1,4 +1,4 @@
-import { interval, timer, of, concat, merge } from 'rxjs';
+import { interval, timer, of, concat, merge, Subject, BehaviorSubject, AsyncSubject, ReplaySubject } from 'rxjs';
 import {map, throttle, throttleTime} from 'rxjs/operators';
 
 // 1
@@ -35,3 +35,38 @@ const interval4$ = interval(1000);
 interval4$.pipe(
     throttleTime(4000)
 ).subscribe(console.log);
+
+// 5 
+const sub$ = new Subject();
+const subscribe = sub$.asObservable();
+subscribe.subscribe(console.log); // early subscribe
+sub$.next(1);
+sub$.next(1);
+sub$.next(1);
+sub$.complete();
+
+// 6
+const bsub$ = new BehaviorSubject(0);
+const subscribe2 = bsub$.asObservable();
+bsub$.next(1);
+bsub$.next(1);
+bsub$.next(1);
+subscribe2.subscribe(console.warn); // at any time subscribe
+
+//7
+const asub$ = new AsyncSubject();
+const subscribe3 = asub$.asObservable();
+asub$.next(1);
+asub$.next(1);
+asub$.next(1);
+asub$.complete();
+subscribe3.subscribe(console.warn); // emit only last value before complete
+
+//8
+const rsub$ = new ReplaySubject();
+const subscribe4 = rsub$.asObservable();
+rsub$.next(1);
+rsub$.next(1);
+rsub$.next(1);
+rsub$.complete();
+subscribe4.subscribe(console.warn); // emit old values to new subscriber
